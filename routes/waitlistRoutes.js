@@ -8,5 +8,10 @@ const {
 
 router.post("/waitlist", joinWaitlist);
 router.get("/waitlist/count", getCount);
-
+router.get("/waitlist", (req, res) => {
+  res.json({
+    success: true,
+    message: "Waitlist API working"
+  });
+});
 module.exports = router;
