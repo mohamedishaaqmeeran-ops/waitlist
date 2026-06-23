@@ -28,4 +28,4 @@ const waitlistSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Waitlist", waitlistSchema);
+module.exports = mongoose.model("user", waitlistSchema);
