@@ -1,35 +1,31 @@
-const db = require('../config/db');
+const mongoose = require("mongoose");
 
-const createWaitlist = async(data) => {
+const waitlistSchema = new mongoose.Schema(
+  {
+    fullName: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    email: {
+      type: String,
+      required: true,
+      trim: true,
+      lowercase: true,
+      unique: true,
+    },
+    brand: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    phone: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+  },
+  { timestamps: true }
+);
 
-    const query = `
-    INSERT INTO waitlist
-    (full_name,email,business_name,phone)
-    VALUES ($1,$2,$3,$4)
-    RETURNING *`;
-
-    const values = [
-        data.full_name,
-        data.email,
-        data.business_name,
-        data.phone
-    ];
-
-    const result = await db.query(query, values);
-
-    return result.rows[0];
-};
-
-const getCount = async() => {
-
-    const result = await db.query(
-        'SELECT COUNT(*) FROM waitlist'
-    );
-
-    return result.rows[0];
-};
-
-module.exports = {
-    createWaitlist,
-    getCount
-};
+module.exports = mongoose.model("Waitlist", waitlistSchema);
