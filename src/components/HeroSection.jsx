@@ -4,7 +4,7 @@ function HeroSection() {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:8000/api/waitlist")
+    fetch("https://waitlist-gxvm.onrender.com/api/waitlist")
       .then((res) => res.json())
       .then((data) => {
         setUsers(data.users || []);
